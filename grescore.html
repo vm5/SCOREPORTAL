@@ -1,58 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome to GRE Score Portal</title>
+  <title>WELCOME TO GRE SCORE PORTAL</title>
+  <style>
+    body {
+      background-image: url("background.jpg");
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      color: white;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"], input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 10px;
+      width: 300px;
+    }
+
+    input[type="submit"] {
+      padding: 10px 30px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to GRE Score Portal</h1>
-    <form id="scoreForm" onsubmit="submitForm(event)">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required><br>
+  <h1>WELCOME TO GRE SCORE PORTAL</h1>
+  <form>
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
 
-        <label for="university">University:</label>
-        <input type="text" id="university" required><br>
+    <label for="university">University:</label><br>
+    <input type="text" id="university" name="university" required><br>
 
-        <label for="gender">Gender:</label>
-        <select id="gender" required>
-            <option value="">Select</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-        </select><br>
+    <label for="score">GRE Score:</label><br>
+    <input type="number" id="score" name="score" required><br>
 
-        <label for="score">GRE Score:</label>
-        <input type="number" id="score" required><br>
+    <input type="submit" value="Submit">
+  </form>
 
-        <button type="submit">Submit</button>
-    </form>
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const university = document.getElementById('university').value;
+      const score = document.getElementById('score').value;
 
-    <p id="submissionMessage" style="display: none;"></p>
+      // Display submitted details
+      const details = document.createElement('p');
+      details.innerHTML = `
+        Name: ${name}<br>
+        University: ${university}<br>
+        GRE Score: ${score}
+      `;
+      document.body.appendChild(details);
 
-    <script>
-        function submitForm(event) {
-            event.preventDefault(); // Prevent form submission
+      // Confirmation message
+      const confirmation = document.createElement('p');
+      confirmation.innerHTML = 'Please confirm your details.';
+      document.body.appendChild(confirmation);
 
-            var name = document.getElementById('name').value;
-            var university = document.getElementById('university').value;
-            var gender = document.getElementById('gender').value;
-            var score = document.getElementById('score').value;
+      // Thank you message
+      const thankYou = document.createElement('p');
+      thankYou.innerHTML = 'Thank you for entering your score.';
+      document.body.appendChild(thankYou);
 
-            // Perform any additional validation if required
-
-            displaySubmissionMessage(name, university, gender, score);
-        }
-
-        function displaySubmissionMessage(name, university, gender, score) {
-            var message = 'Thank you, ' + name + '! Your score submission has been recorded.<br><br>';
-            message += 'Name: ' + name + '<br>';
-            message += 'University: ' + university + '<br>';
-            message += 'Gender: ' + gender + '<br>';
-            message += 'GRE Score: ' + score + '<br>';
-
-            var submissionMessage = document.getElementById('submissionMessage');
-            submissionMessage.innerHTML = message;
-            submissionMessage.style.display = 'block';
-        }
-    </script>
+      // Hide the form
+      document.querySelector('form').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
