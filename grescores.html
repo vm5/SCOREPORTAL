@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to GRE Score Portal</title>
+</head>
+<body>
+    <h1>Welcome to GRE Score Portal</h1>
+    <form id="scoreForm" onsubmit="submitForm(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br>
+
+        <label for="university">University:</label>
+        <input type="text" id="university" required><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br>
+
+        <label for="score">GRE Score:</label>
+        <input type="number" id="score" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="submissionMessage" style="display: none;"></p>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Prevent form submission
+
+            var name = document.getElementById('name').value;
+            var university = document.getElementById('university').value;
+            var gender = document.getElementById('gender').value;
+            var score = document.getElementById('score').value;
+
+            // Perform any additional validation if required
+
+            displaySubmissionMessage(name, university, gender, score);
+        }
+
+        function displaySubmissionMessage(name, university, gender, score) {
+            var message = 'Thank you, ' + name + '! Your score submission has been recorded.<br><br>';
+            message += 'Name: ' + name + '<br>';
+            message += 'University: ' + university + '<br>';
+            message += 'Gender: ' + gender + '<br>';
+            message += 'GRE Score: ' + score + '<br>';
+
+            var submissionMessage = document.getElementById('submissionMessage');
+            submissionMessage.innerHTML = message;
+            submissionMessage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
